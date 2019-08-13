@@ -10,11 +10,11 @@ class IngredientSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    ingredient_list = IngredientSerializer(many=True, read_only=True)
+    ingredients_list = IngredientSerializer(many=True, read_only=False)
 
     class Meta:
         model = Product
-        fields = ('id','name', 'price', 'category', 'ingredient_list')
+        fields = ('id','name', 'price', 'category', 'ingredients_list')
 
 
         
