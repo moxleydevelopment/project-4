@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'GA_POS.urls'
+ROOT_URLCONF = 'ga_pos.urls'
 
 TEMPLATES = [
     {
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'GA_POS.wsgi.application'
+WSGI_APPLICATION = 'ga_pos.wsgi.application'
 
 
 # Database
