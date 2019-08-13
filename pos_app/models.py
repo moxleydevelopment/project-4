@@ -21,12 +21,12 @@ class Transaction(models.Model):
 
 class Product(models.Model):
     CATEGORY = (
-        'Beverage', 
-        'Cocktails',
-        'Appetizers',
-        'Entrees',
-         'Desserts',
-         'Sides'
+        ('beverage','Beverage'), 
+        ('cocktail','Cocktails'),
+        ('appetizers','Appetizers'),
+        ('entrees','Entrees'),
+         ('desserts','Desserts'),
+         ('sides','Sides')
     )
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=6, decimal_places=2) 
