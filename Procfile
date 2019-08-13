@@ -1,0 +1,1 @@
+web: gunicorn ga_pos.wsgi
