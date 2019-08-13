@@ -6,7 +6,7 @@ from .models import User, Transaction, Product, Ingredient
 class IngredientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingredient
-        fields = ('id','name')
+        fields = ('id', 'name')
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -14,22 +14,21 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ('id','name', 'price', 'category', 'ingredients_list')
+        fields = ('id', 'name', 'price', 'category', 'ingredients_list')
 
 
-        
 class TransactionSerializer(serializers.ModelSerializer):
     product_list = ProductSerializer(many=True, read_only=True)
 
-    class Meta: 
+    class Meta:
         model = Transaction
-        fields = ('id','transaction_date', 'user_name', 'product_list', 'total')
+        fields = ('id', 'transaction_date',
+                  'user_name', 'product_list', 'total')
 
- 
+
 class UserSerializer(serializers.ModelSerializer):
-    transaction = TransactionSerializer(many=True, read_only=True) 
-    
+    transaction = TransactionSerializer(many=True, read_only=True)
+
     class Meta:
         model = User
-        fields = ('id','name', 'passcode', 'transaction')
-
+        fields = ('id', 'name', 'passcode', 'transaction')
