@@ -30,7 +30,7 @@ class Product(models.Model):
     )
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=6, decimal_places=2) 
-    category =  models.CharField(max_length=1, choices=CATEGORY) 
+    category =  models.CharField(max_length=100, choices=CATEGORY) 
     ingredients_list = models.ManyToManyField('Ingredient') 
     
     def __str__(self):
