@@ -11,7 +11,7 @@ class User(models.Model):
 
 class Transaction(models.Model):
     transaction_date = models.DateTimeField(auto_now_add=True)
-    #user_name = models.ManyToManyField('Users') 
+    user_name = models.ForeignKey(User, related_name='transactions')
     product_list = models.ManyToManyField('Product') 
     total = models.DecimalField(max_digits=6, decimal_places=2) 
     
