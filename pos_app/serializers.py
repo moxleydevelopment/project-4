@@ -10,16 +10,16 @@ class IngredientSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    ingredients = IngredientSerializer(many=True, read_only=True)
+    ingredient_list = IngredientSerializer(many=True, read_only=True)
 
     class Meta:
         model = Product
-        fields = ('id','name', 'price', 'category', 'ingredients')
+        fields = ('id','name', 'price', 'category', 'ingredient_list')
 
 
         
 class TransactionSerializer(serializers.ModelSerializer):
-    products = ProductSerializer(many=True, read_only=True)
+    product_list = ProductSerializer(many=True, read_only=True)
 
     class Meta: 
         model = Transaction
@@ -27,9 +27,9 @@ class TransactionSerializer(serializers.ModelSerializer):
 
  
 class UserSerializer(serializers.ModelSerializer):
-    transactions = TransactionSerializer(many=True, read_only=True) 
+    transaction = TransactionSerializer(many=True, read_only=True) 
     
     class Meta:
         model = User
-        fields = ('id','name', 'passcode', 'transactions')
+        fields = ('id','name', 'passcode', 'transaction')
 
