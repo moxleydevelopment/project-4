@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'ga_pos.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.path.join(BASE_DIR, 'pos_database'),
+        'NAME':  'pos_database'),
         'USER': 'sample',
         'PASSWORD': 'sample',
         'HOST': 'localhost'
