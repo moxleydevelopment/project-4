@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-class CategoryContainer extends Component {
+class  CategoryContainer extends Component {
     render() {
         return (
-            <div>
+            <div className='category-container'>
                 
             </div>
         );
