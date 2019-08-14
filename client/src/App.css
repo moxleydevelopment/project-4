@@ -6,7 +6,7 @@
 /* Button Class Styling */
 
 .btn {
-  padding: 20px;
+  padding: 10px 20px;
   margin: 10px;
 }
 
@@ -80,4 +80,15 @@
   grid-column: 4/ span 3;
   grid-row: 2/ span 6;
   background-color: brown;
+}
+
+
+/* Add User Form Styling */
+
+.new-user{
+
+}
+
+.new-user span{
+  display: block;
 }
