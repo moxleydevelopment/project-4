@@ -11,8 +11,7 @@ class NewUserForm extends Component {
         event.preventDefault()
         const res = await axios.post(`api/v1/users/`, this.state.newUser)
         console.log(res.data)
-        this.props.displayNewUserForm = false
-
+        
     }
 
     handleInputChange = (event) => {

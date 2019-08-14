@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import NewUserForm from './NewUserForm'
 import UserList from './UserList'
+import NewProductForm from "./NewProductForm";
 
 class Admin extends Component {
 
     state = {
         displayNewUserForm: false,
         displayUsersList: false,
+        displayNewProductForm: false
 
     }
 
@@ -25,6 +27,14 @@ class Admin extends Component {
             this.setState({ displayUsersList: true })
         }
     }
+
+    addNewProduct = () => {
+        if (this.displayNewProductForm) {
+            this.setState({ displayNewProductForm: false })
+        } else {
+            this.setState({ displayNewProductForm: true })
+        }
+    }
     render() {
         return (
             <div className='pos-container'>
@@ -35,16 +45,19 @@ class Admin extends Component {
                     <h3>Select an option from below</h3>
                     <button className='btn' onClick={this.addNewUser}>Add New User</button>
                     <button className='btn' onClick={this.displayUsers}>Display Users</button>
-                    <button className='btn'>Add New Product</button>
+                    <button className='btn' onClick={this.addNewProduct}>Add New Product</button>
                     <button className='btn'>Dislplay Product</button>
 
 
                 </div>
                 <div className='admin-view'>
                     {this.state.displayNewUserForm ?
-                        <NewUserForm  displayNewUserForm={this.state.displayNewUserForm}/> 
+                        <NewUserForm /> 
                         :this.state.displayUsersList
-                        ?<UserList/>: 
+                        ?<UserList/>:
+                        this.state.displayNewProductForm?
+                        <NewProductForm/>:
+
                         <h1>Content Here</h1>}
 
                 </div>
