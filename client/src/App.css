@@ -3,6 +3,23 @@
 }
 */
 
+/* Button Class Styling */
+
+.btn {
+  padding: 20px;
+  margin: 10px;
+}
+
+
+
+
+
+
+
+
+
+/* styling for pos container divs */
+
 .pos-container {
   min-height: 100vh;
   min-width: 100vw;
@@ -39,3 +56,28 @@
   grid-row: 7 / span 1;
 }
 
+
+
+/* Styling for the Admin Page */
+
+.admin-header {
+  grid-column: 1 / span 6;
+  grid-row: 1 / span 1;
+
+}
+
+.admin-options {
+  grid-column: 1/ span 3;
+  grid-row: 2 / span 6;
+  background-color: azure;
+}
+
+.admin-options h3 {
+  text-align: center;
+}
+
+.admin-view{
+  grid-column: 4/ span 3;
+  grid-row: 2/ span 6;
+  background-color: brown;
+}
