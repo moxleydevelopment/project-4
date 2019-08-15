@@ -3,6 +3,7 @@ import NewUserForm from './NewUserForm'
 import UserList from './UserList'
 import NewProductForm from "./NewProductForm";
 import ProductsList from './ProductsList';
+import NewIngredientForm from './NewIngredientForm'
 
 class Admin extends Component {
 
@@ -10,7 +11,8 @@ class Admin extends Component {
         displayNewUserForm: false,
         displayUsersList: false,
         displayNewProductForm: false,
-        displayProductList: false
+        displayProductList: false,
+        displayNewIngredientForm: false
 
     }
 
@@ -22,7 +24,8 @@ class Admin extends Component {
                 displayNewUserForm: true,
                 displayUsersList: false,
                 displayNewProductForm: false,
-                displayProductList: false
+                displayProductList: false,
+                displayNewIngredientForm: false
             })
         }
     }
@@ -35,7 +38,8 @@ class Admin extends Component {
                 displayUsersList: true,
                 displayNewUserForm: false,
                 displayNewProductForm: false,
-                displayProductList: false
+                displayProductList: false,
+                displayNewIngredientForm: false
 
             })
         }
@@ -49,7 +53,8 @@ class Admin extends Component {
                 displayNewProductForm: true,
                 displayUsersList: false,
                 displayNewUserForm: false,
-                displayProductList: false
+                displayProductList: false,
+                displayNewIngredientForm: false
 
             })
         }
@@ -64,7 +69,22 @@ class Admin extends Component {
                 displayNewUserForm: false,
                 displayUsersList: false,
                 displayNewProductForm: false,
+                displayNewIngredientForm: false
 
+            })
+        }
+    }
+
+    addNewIngredient = () => {
+        if (this.displayNewIngredientForm) {
+            this.setState({ displayNewUserForm: false })
+        } else {
+            this.setState({
+                displayNewUserForm: false,
+                displayUsersList: false,
+                displayNewProductForm: false,
+                displayProductList: false,
+                displayNewIngredientForm: true,
             })
         }
     }
@@ -80,6 +100,7 @@ class Admin extends Component {
                     <button className='btn' onClick={this.displayUsers}>Display Users</button>
                     <button className='btn' onClick={this.addNewProduct}>Add New Product</button>
                     <button className='btn' onClick={this.displayProduct}>Dislplay Product</button>
+                    <button className='btn' onClick={this.addNewIngredient}>Add New Ingredient</button>
 
 
                 </div>
@@ -92,6 +113,8 @@ class Admin extends Component {
                                 <NewProductForm /> :
                                 this.state.displayProductList ?
                                     <ProductsList /> :
+                                    this.state.displayNewIngredientForm?
+                                    <NewIngredientForm/>:
 
                                     <h1>Content Here</h1>}
 
