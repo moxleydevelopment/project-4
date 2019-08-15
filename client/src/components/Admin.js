@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import NewUserForm from './NewUserForm'
 import UserList from './UserList'
 import NewProductForm from "./NewProductForm";
+import ProductsList from './ProductsList';
 
 class Admin extends Component {
 
     state = {
         displayNewUserForm: false,
         displayUsersList: false,
-        displayNewProductForm: false
+        displayNewProductForm: false,
+        displayProductList: false
 
     }
 
@@ -16,7 +18,12 @@ class Admin extends Component {
         if (this.displayNewUserForm) {
             this.setState({ displayNewUserForm: false })
         } else {
-            this.setState({ displayNewUserForm: true })
+            this.setState({
+                displayNewUserForm: true,
+                displayUsersList: false,
+                displayNewProductForm: false,
+                displayProductList: false
+            })
         }
     }
 
@@ -24,7 +31,13 @@ class Admin extends Component {
         if (this.displayUsersList) {
             this.setState({ displayUsersList: false })
         } else {
-            this.setState({ displayUsersList: true })
+            this.setState({
+                displayUsersList: true,
+                displayNewUserForm: false,
+                displayNewProductForm: false,
+                displayProductList: false
+
+            })
         }
     }
 
@@ -32,7 +45,27 @@ class Admin extends Component {
         if (this.displayNewProductForm) {
             this.setState({ displayNewProductForm: false })
         } else {
-            this.setState({ displayNewProductForm: true })
+            this.setState({
+                displayNewProductForm: true,
+                displayUsersList: false,
+                displayNewUserForm: false,
+                displayProductList: false
+
+            })
+        }
+    }
+
+    displayProduct = () => {
+        if (this.displayProductList) {
+            this.setState({ displayProductList: false })
+        } else {
+            this.setState({
+                displayProductList: true,
+                displayNewUserForm: false,
+                displayUsersList: false,
+                displayNewProductForm: false,
+
+            })
         }
     }
     render() {
@@ -46,19 +79,21 @@ class Admin extends Component {
                     <button className='btn' onClick={this.addNewUser}>Add New User</button>
                     <button className='btn' onClick={this.displayUsers}>Display Users</button>
                     <button className='btn' onClick={this.addNewProduct}>Add New Product</button>
-                    <button className='btn'>Dislplay Product</button>
+                    <button className='btn' onClick={this.displayProduct}>Dislplay Product</button>
 
 
                 </div>
                 <div className='admin-view'>
                     {this.state.displayNewUserForm ?
-                        <NewUserForm /> 
-                        :this.state.displayUsersList
-                        ?<UserList/>:
-                        this.state.displayNewProductForm?
-                        <NewProductForm/>:
+                        <NewUserForm />
+                        : this.state.displayUsersList
+                            ? <UserList /> :
+                            this.state.displayNewProductForm ?
+                                <NewProductForm /> :
+                                this.state.displayProductList ?
+                                    <ProductsList /> :
 
-                        <h1>Content Here</h1>}
+                                    <h1>Content Here</h1>}
 
                 </div>
             </div>
