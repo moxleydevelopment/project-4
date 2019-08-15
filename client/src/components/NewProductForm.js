@@ -18,10 +18,10 @@ class NewProductForm extends Component {
         const res = await axios.get(`api/v1/ingredients/`)
         this.setState({ ingridentsList: [...res.data] })
         console.log(res.data)
-        
+
     }
 
-       
+
     addNewProduct = async (event) => {
         event.preventDefault()
         const res = await axios.post(`api/v1/products/`, this.state.newProduct)
@@ -52,9 +52,12 @@ class NewProductForm extends Component {
                     </span>
                     <div>
                         {
-                            this.state.ingridentsList.map(ingredient =>{
-                                return(
-                                    <Checkbox ingredient={ingredient.name}/>
+                            this.state.ingridentsList.map(ingredient => {
+                                return (
+                                    <div>
+                                        <input type='checkbox' name='ingredients' value={ingredient.name} onChange={this.handleInputChange}></input>
+                                        <label htmlFor='ingredient'>{ingredient.name}</label>
+                                    </div>
                                 )
                             })
                         }
