@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import Checkbox from './Checkbox'
+
 
 class NewProductForm extends Component {
 
     state = {
         newProduct: {},
-        ingridentsList: []
+        ingridentsList: [],
+        ingridentsArray: []
     }
 
     componentDidMount() {
@@ -35,6 +36,37 @@ class NewProductForm extends Component {
 
     }
 
+    ingridentsListChange = (event) => {
+        let isFound = false
+        const copiedProduct = { ...this.state.newProduct }
+        let itemArray = [...this.state.ingridentsArray]
+        if (itemArray.length === 0) {
+            itemArray.push(event.target.value)
+            isFound = true
+        } else {
+
+            itemArray.forEach(element => {
+                if (element === event.target.value) {
+                    isFound = true
+                    itemArray = itemArray.filter((item) => {
+                        return (item !== event.target.value)
+                    })
+
+                }
+
+            });
+        }
+        if (!isFound) {
+            itemArray.push(event.target.value)
+        }
+
+        this.setState({ ingridentsArray: [...itemArray] })
+        console.log(copiedProduct[event.target.name])
+        copiedProduct[event.target.name] = [...itemArray]
+        console.log(copiedProduct[event.target.name])
+        this.setState({ newProduct: copiedProduct })
+    }
+
     render() {
 
 
@@ -55,13 +87,23 @@ class NewProductForm extends Component {
                             this.state.ingridentsList.map(ingredient => {
                                 return (
                                     <div>
-                                        <input type='checkbox' name='ingredients' value={ingredient.name} onChange={this.handleInputChange}></input>
+                                        <input type='checkbox' name='ingredients' value={ingredient.name} onChange={this.ingridentsListChange}></input>
                                         <label htmlFor='ingredient'>{ingredient.name}</label>
                                     </div>
                                 )
                             })
                         }
                     </div>
+                    <select name="categoty" onChange={this.handleInputChange}>
+                        <option>Select a categoty</option>
+                        <option value="beverage">Beverage</option>
+                        <option value="cocktail">Cocktail</option>
+                        <option value="appetizers">Appetizers</option>
+                        <option value="entrees">Entrees</option>
+                        <option value="desserts">Desserts</option>
+                        <option value="sides">Sides</option>
+
+                    </select>
 
                     <input type='submit' value='Submit'></input>
                 </form>
