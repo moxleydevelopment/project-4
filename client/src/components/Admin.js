@@ -4,6 +4,7 @@ import UserList from './UserList'
 import NewProductForm from "./NewProductForm";
 import ProductsList from './ProductsList';
 import NewIngredientForm from './NewIngredientForm'
+import IngredientList from './IngredientList';
 
 class Admin extends Component {
 
@@ -12,7 +13,8 @@ class Admin extends Component {
         displayUsersList: false,
         displayNewProductForm: false,
         displayProductList: false,
-        displayNewIngredientForm: false
+        displayNewIngredientForm: false,
+        displayIngredientList: false,
 
     }
 
@@ -25,7 +27,8 @@ class Admin extends Component {
                 displayUsersList: false,
                 displayNewProductForm: false,
                 displayProductList: false,
-                displayNewIngredientForm: false
+                displayNewIngredientForm: false,
+                displayIngredientList: false
             })
         }
     }
@@ -39,7 +42,8 @@ class Admin extends Component {
                 displayNewUserForm: false,
                 displayNewProductForm: false,
                 displayProductList: false,
-                displayNewIngredientForm: false
+                displayNewIngredientForm: false,
+                displayIngredientList: false
 
             })
         }
@@ -54,7 +58,8 @@ class Admin extends Component {
                 displayUsersList: false,
                 displayNewUserForm: false,
                 displayProductList: false,
-                displayNewIngredientForm: false
+                displayNewIngredientForm: false,
+                displayIngredientList: false
 
             })
         }
@@ -69,7 +74,8 @@ class Admin extends Component {
                 displayNewUserForm: false,
                 displayUsersList: false,
                 displayNewProductForm: false,
-                displayNewIngredientForm: false
+                displayNewIngredientForm: false,
+                displayIngredientList: false
 
             })
         }
@@ -77,7 +83,7 @@ class Admin extends Component {
 
     addNewIngredient = () => {
         if (this.displayNewIngredientForm) {
-            this.setState({ displayNewUserForm: false })
+            this.setState({ displayNewIngredientForm: false })
         } else {
             this.setState({
                 displayNewUserForm: false,
@@ -85,9 +91,26 @@ class Admin extends Component {
                 displayNewProductForm: false,
                 displayProductList: false,
                 displayNewIngredientForm: true,
+                displayIngredientList: false
             })
         }
     }
+
+    displayIngredient = () => {
+        if (this.displayIngredientList) {
+            this.setState({ displayIngredientList: false })
+        } else {
+            this.setState({
+                displayNewUserForm: false,
+                displayUsersList: false,
+                displayNewProductForm: false,
+                displayProductList: false,
+                displayNewIngredientForm: false,
+                displayIngredientList: true
+            })
+        }
+    }
+
     render() {
         return (
             <div className='pos-container'>
@@ -99,8 +122,9 @@ class Admin extends Component {
                     <button className='btn' onClick={this.addNewUser}>Add New User</button>
                     <button className='btn' onClick={this.displayUsers}>Display Users</button>
                     <button className='btn' onClick={this.addNewProduct}>Add New Product</button>
-                    <button className='btn' onClick={this.displayProduct}>Dislplay Product</button>
+                    <button className='btn' onClick={this.displayProduct}>Dislplay Products</button>
                     <button className='btn' onClick={this.addNewIngredient}>Add New Ingredient</button>
+                    <button className='btn' onClick={this.displayIngredient}>Display Ingredients</button>
 
 
                 </div>
@@ -113,10 +137,12 @@ class Admin extends Component {
                                 <NewProductForm /> :
                                 this.state.displayProductList ?
                                     <ProductsList /> :
-                                    this.state.displayNewIngredientForm?
-                                    <NewIngredientForm/>:
+                                    this.state.displayNewIngredientForm ?
+                                        <NewIngredientForm /> :
+                                        this.state.displayIngredientList ?
+                                            <IngredientList /> :
 
-                                    <h1>Content Here</h1>}
+                                            <h1>Content Here</h1>}
 
                 </div>
             </div>

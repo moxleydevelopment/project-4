@@ -22,6 +22,10 @@ class NewProductForm extends Component {
 
     }
 
+    getIngredient =  (id) =>{
+       return this.state.ingridentsList[id-1] 
+    }
+
 
     addNewProduct = async (event) => {
         event.preventDefault()
@@ -40,16 +44,19 @@ class NewProductForm extends Component {
         let isFound = false
         const copiedProduct = { ...this.state.newProduct }
         let itemArray = [...this.state.ingridentsArray]
+        let copiedIngredient = this.getIngredient(event.target.value)
+        
+        console.log(copiedIngredient)
         if (itemArray.length === 0) {
-            itemArray.push(event.target.value)
+            itemArray.push(copiedIngredient)
             isFound = true
         } else {
 
             itemArray.forEach(element => {
-                if (element === event.target.value) {
+                if (element.id === copiedIngredient.id) {
                     isFound = true
                     itemArray = itemArray.filter((item) => {
-                        return (item !== event.target.value)
+                        return (item.id !== copiedIngredient.id)
                     })
 
                 }
@@ -57,13 +64,12 @@ class NewProductForm extends Component {
             });
         }
         if (!isFound) {
-            itemArray.push(event.target.value)
+            itemArray.push(copiedIngredient)
         }
 
         this.setState({ ingridentsArray: [...itemArray] })
-        console.log(copiedProduct[event.target.name])
         copiedProduct[event.target.name] = [...itemArray]
-        console.log(copiedProduct[event.target.name])
+        console.log(itemArray)
         this.setState({ newProduct: copiedProduct })
     }
 
@@ -73,7 +79,7 @@ class NewProductForm extends Component {
         return (
             <div>
                 <h3>Whats the new product?</h3>
-                <form onSubmit={this.addNewUser}>
+                <form onSubmit={this.addNewProduct}>
                     <span>
                         <label htmlFor='name'>Name: </label>
                         <input type='text' name='name' onChange={this.handleInputChange} value={this.state.newProduct.name}></input>
@@ -87,14 +93,14 @@ class NewProductForm extends Component {
                             this.state.ingridentsList.map(ingredient => {
                                 return (
                                     <div>
-                                        <input type='checkbox' name='ingredients' value={ingredient.name} onChange={this.ingridentsListChange}></input>
+                                        <input type='checkbox' name='ingredients_list' value={ingredient.id} onChange={this.ingridentsListChange}></input>
                                         <label htmlFor='ingredient'>{ingredient.name}</label>
                                     </div>
                                 )
                             })
                         }
                     </div>
-                    <select name="categoty" onChange={this.handleInputChange}>
+                    <select name="category" onChange={this.handleInputChange}>
                         <option>Select a categoty</option>
                         <option value="beverage">Beverage</option>
                         <option value="cocktail">Cocktail</option>

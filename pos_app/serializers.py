@@ -10,7 +10,7 @@ class IngredientSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    ingredients_list = IngredientSerializer(many=True, read_only=False)
+    ingredients_list = IngredientSerializer(many=True, read_only=True)
 
     class Meta:
         model = Product
