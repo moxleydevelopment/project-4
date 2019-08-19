@@ -3,15 +3,15 @@ import React, { Component } from 'react';
 class TransactionDisplay extends Component {
     render() {
 
-        let itemList = this.props.productsAddedToTransaction.map(product =>{
+        let itemList = this.props.productsAddedToTransaction.map((product, index) =>{
             return (
-                <div>
-                    <span>
-                        <p>{product.name}</p>
-                        <p>{product.price}</p>
-                    </span>
+                <button onClick={this.props.selectItem} value={index}>
+                   
+                     {product.name}
+                        {product.price}
+                  
 
-                </div>
+                </button>
             )
         })
         return (
