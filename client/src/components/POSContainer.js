@@ -4,6 +4,7 @@ import CategoryContainer from './CategoryContainer'
 import ProductContainer from './ProductContainer'
 import ModButtonContainer from './ModButtonContainer'
 import PaymentContainer from './PaymentContainer'
+import ModificationContainer from './ModificationContainer'
 import axios from 'axios'
 
 
@@ -83,7 +84,7 @@ class POSContainer extends Component {
                 this.deleteSelectedItem()
                 break;
             case 'Modify':
-                this.modifySelectedItem()
+                this.getModifyScreen()
                 break;
             case 'Payment':
                 this.getPaymentScreen()
@@ -117,8 +118,8 @@ class POSContainer extends Component {
         }
     }
 
-    modifySelectedItem = () => {
-
+    getModifyScreen = () => {
+        this.setState({displayModificationScreen : true})
     }
 
     getPaymentScreen = () => {
@@ -145,6 +146,8 @@ class POSContainer extends Component {
                 {
                     this.state.getPaymentScreen?
                     <PaymentContainer/>:
+                    this.state.displayModificationScreen?
+                    <ModificationContainer/>:
                     <ProductContainer
                     productList={this.state.filteredProductList}
                     addProductToTransaction={this.addProductToTransaction}
