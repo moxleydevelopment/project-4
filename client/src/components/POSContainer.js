@@ -10,6 +10,8 @@ import axios from 'axios'
 
 class POSContainer extends Component {
     state = {
+        userID : {},
+        transactionObjet :{},
         productsAddedToTransaction: [],
         productList: [],
         categoryTypeArray: [
@@ -45,9 +47,22 @@ class POSContainer extends Component {
 
     }
 
+    getUser = async () =>{
+        const user = await axios.get(`/api/v1/users/2/`)
+        this.setState({userID : {...user.data}})
+    }
+
+    createTransaction = async () => {
+        const res = await axios.post(`/api/v1/transactions/`, this.state.transactionObjet)
+        console.log(res)
+
+
+    }
+
 
     componentDidMount() {
         this.getProductList()
+        this.getUser()
     }
 
 
@@ -112,7 +127,7 @@ class POSContainer extends Component {
 
     deleteSelectedItem = () => {
         let copiedList = [...this.state.productsAddedToTransaction]
-        if (this.state.selectedItemIndex != -1) {
+        if (this.state.selectedItemIndex !== -1) {
             copiedList.splice(this.state.selectedItemIndex, 1)
             this.setState({ productsAddedToTransaction: copiedList, selectedItemIndex: -1 })
         }
@@ -122,8 +137,24 @@ class POSContainer extends Component {
         this.setState({displayModificationScreen : true})
     }
 
+    totalWithTax = () =>{
+        let getSum = (total, num) => {
+            return total + Number(num.price);
+          }
+          let subTotal = this.state.productsAddedToTransaction.reduce(getSum, 0)
+           return((subTotal + (subTotal * .07)))
+    }
+
     getPaymentScreen = () => {
-        this.setState({getPaymentScreen : true})
+        let tempTransaction = {...this.state.transactionObjet}
+        tempTransaction['total'] = this.totalWithTax()
+        tempTransaction['product_list'] = [...this.state.productsAddedToTransaction]
+        tempTransaction['user_name'] = [this.state.userID.id]
+        this.setState({getPaymentScreen : true , transactionObjet:{...tempTransaction}})
+        this.createTransaction()
+        
+
+
     }
 
     selectItem = (event) => {
@@ -132,12 +163,22 @@ class POSContainer extends Component {
         this.setState({ selectedItem: item, selectedItemIndex: event.target.value })
 
     }
+
+    
+
+   
+
+   
+
+    
     render() {
         return (
             <div className='pos-container'>
                 <TransactionDisplay
                     productsAddedToTransaction={this.state.productsAddedToTransaction}
                     selectItem={this.selectItem}
+                    userID={this.state.userID}
+                    calculateSubTotal={this.calculateSubTotal}
                 ></TransactionDisplay>
                 <CategoryContainer
                     categoryTypeArray={this.state.categoryTypeArray}

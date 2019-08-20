@@ -41,12 +41,24 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class TransactionSerializer(serializers.ModelSerializer):
-    product_list = ProductSerializer(many=True, read_only=True)
+    product_list = ProductSerializer(many=True)
 
     class Meta:
         model = Transaction
         fields = ('id', 'transaction_date',
                   'user_name', 'product_list', 'total')
+    
+    def create(self,validated_data):
+        product_data = validated_data.pop('product_list')
+        user_data = validated_data.pop('user_name')
+        transaction = Transaction.objects.create(**validated_data)
+        user = User.objects.get(name=user_data[0])
+        transaction.user_name.add(user)
+        for value in product_data:
+            product = Product.objects.get(name=value['name'])
+            transaction.product_list.add(product)
+        return transaction    
+
 
 
 class UserSerializer(serializers.ModelSerializer):

@@ -39,6 +39,11 @@ class ProductsList extends Component {
         console.log(res.data)
     }
 
+    deleteProduct = async ()=>{
+        const res = await axios.delete(`api/v1/products/${this.state.product.id}/`)
+        console.log(res.data)
+    }
+
     handleInputChange = (event) => {
         const copiedProduct = { ...this.state.product }
         copiedProduct[event.target.name] = event.target.value
@@ -158,6 +163,9 @@ class ProductsList extends Component {
                                 </select>
 
                                 <input type='submit' value='Submit'></input>
+                            </form>
+                            <form onSubmit={this.deleteProduct}>
+                                <input type='submit' value='Delete'></input>
                             </form>
                         </div>
 

@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 
 class TransactionDisplay extends Component {
-    render() {
 
+    state ={
+       
+    }
+    render() {
+        
+        
         let itemList = this.props.productsAddedToTransaction.map((product, index) =>{
+                         
             return (
                 <button onClick={this.props.selectItem} value={index}>
                    
@@ -14,6 +20,9 @@ class TransactionDisplay extends Component {
                 </button>
             )
         })
+
+        
+         
         return (
             <div className='transaction-display'>
                 

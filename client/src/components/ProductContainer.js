@@ -12,6 +12,7 @@ class ProductContainer extends Component {
                     this.props.productList.map(product => {
                         return (
                             <ProductButton
+                                key={product.id}
                                 name={product.name}
                                 id={product.id}
                                 addProductToTransaction={this.props.addProductToTransaction}

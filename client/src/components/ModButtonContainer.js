@@ -5,9 +5,9 @@ class ModButtonContainer extends Component {
         return (
             <div className='mod-button-container'>
                 {
-                    this.props.modificationType.map(mod =>{
+                    this.props.modificationType.map((mod, index) =>{
                         return (
-                            <button onClick={this.props.switchModification} value={mod}>{mod}</button>
+                            <button key={index} onClick={this.props.switchModification} value={mod}>{mod}</button>
                         )
                     })
                     
