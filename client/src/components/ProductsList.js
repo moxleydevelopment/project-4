@@ -33,7 +33,7 @@ class ProductsList extends Component {
         this.setState({ ingridentsList: [...res.data] })
     }
 
-    updateProduct = async (event) =>{
+    updateProduct = async (event) => {
         event.preventDefault()
         const res = await axios.put(`api/v1/products/${this.state.product.id}/`, this.state.product)
         console.log(res.data)
@@ -67,15 +67,25 @@ class ProductsList extends Component {
 
     }
 
+    getIngredient = (name) => {
+        let item = this.state.ingridentsList.filter(item => {
+            return (item.name == name)
+        })
+        return item
+    }
+
     ingridentsListChange = (event) => {
-        console.log('im firing 2')
+        console.log(event.target.value)
         let isFound = false
         const copiedProduct = { ...this.state.product }
         console.log(copiedProduct)
-        this.setState({ingridientsArray: [...copiedProduct[event.target.name]]})
+        this.setState({ ingridientsArray: [...copiedProduct[event.target.name]] })
+        console.log(this.state.ingridientsArray)
         let itemArray = [...this.state.ingridientsArray]
         if (itemArray.length === 0) {
-            itemArray.push(event.target.value)
+            let item = this.getIngredient(event.target.value)
+            console.log(item[0])
+            itemArray.push(item[0])
             isFound = true
         } else {
 
@@ -91,7 +101,8 @@ class ProductsList extends Component {
             });
         }
         if (!isFound) {
-            itemArray.push(event.target.value)
+            let item = this.getIngredient(event.target.value)
+            itemArray.push(item[0])
         }
 
         this.setState({ ingridientsArray: [...itemArray] })
@@ -123,25 +134,14 @@ class ProductsList extends Component {
                                     {
                                         this.state.ingridentsList.map(ingredient => {
 
+                                            return (
+                                                <div>
+                                                    <input type='checkbox' name='ingredients_list' value={ingredient.name} onChange={this.ingridentsListChange} checked={this.checkForIngredient(ingredient)}></input>
+                                                    <label htmlFor='ingredient'>{ingredient.name}</label>
 
-                                            if (this.checkForIngredient(ingredient)) {
-                                                return (
-                                                    <div>
-                                                        <input type='checkbox' name='ingredients_list' value={ingredient.name} onChange={this.ingridentsListChange} checked={this.checkForIngredient(ingredient)}></input>
-                                                        <label htmlFor='ingredient'>{ingredient.name}</label>
+                                                </div>
 
-                                                    </div>
-
-                                                )
-                                             } else {
-
-                                                 return (
-                                                     <div>
-                                                        <input type='checkbox' name='ingredients_list' value={ingredient.name} onChange={this.ingridentsListChange}></input>
-                                                         <label htmlFor='ingredient'>{ingredient.name}</label>
-                                                    </div>
-                                                 )
-                                             }
+                                            )
 
                                         })
                                     }

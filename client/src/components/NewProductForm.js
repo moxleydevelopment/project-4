@@ -23,7 +23,11 @@ class NewProductForm extends Component {
     }
 
     getIngredient =  (id) =>{
-       return this.state.ingridentsList[id-1] 
+       let item =  this.state.ingridentsList.filter(item =>{
+           return( item.id == id)
+       })
+
+       return item[0]
     }
 
 
