@@ -421,45 +421,41 @@ table{
 .table-ing{
   width: 100%;
   text-align: center;
-  color: #000;
-
+  color: #fff;
 }
 
 .table-ing td{
   padding: 15px;
+  background-color: rgba(85, 68, 65, .5);
+
 }
 
-.table-ing tr:hover{
-  background-color: #999;
-  color: #fff;
-}
+
 
 .table-pr{
   width: 100%;
   text-align: center;
-  color: #000;
+  color: #fff;
+  
+}
+th {
+  background-color: black;
 }
 
 .table-pr td{
   padding: 15px;
+  background-color: rgba(85, 68, 65, .5);
 }
 
-.table-pr tr:hover{
-  background-color: #999;
-  color: #fff;
-}
 
 .table-user{
   width: 100%;
   text-align: center;
-  color: #000;
+  color: #fff;
 }
 
 .table-user td{
   padding: 15px;
+  background-color: rgba(85, 68, 65, .5);
 }
 
-.table-user tr:hover{
-  background-color: #999;
-  color: #fff;
-}

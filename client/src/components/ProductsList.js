@@ -153,7 +153,7 @@ class ProductsList extends Component {
                                 <select name="category" onChange={this.handleInputChange}>
                                     <option value={this.state.product.category}>{this.state.product.category}</option>
                                     <option value="beverage">Beverage</option>
-                                    <option value="cocktail">Cocktail</option>
+                                    <option value="cocktails">Cocktail</option>
                                     <option value="appetizers">Appetizers</option>
                                     <option value="entrees">Entrees</option>
                                     <option value="desserts">Desserts</option>
