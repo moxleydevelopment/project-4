@@ -448,3 +448,18 @@ table{
   background-color: #999;
   color: #fff;
 }
+
+.table-user{
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.table-user td{
+  padding: 15px;
+}
+
+.table-user tr:hover{
+  background-color: #999;
+  color: #fff;
+}

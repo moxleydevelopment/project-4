@@ -46,18 +46,18 @@ class UserList extends Component {
     render() {
         return (
             <div>
-                <h1>Availble Users</h1>
+                <h1>Available Users</h1>
                 {
                     this.state.displayEditUserForm ?
                         <div>
                             <form className='form' onSubmit={this.updateUser}>
-                             
-                                    <label htmlFor='name'>Name: </label>
-                                    <input type='text' name='name' onChange={this.handleInputChange} value={this.state.user.name}></input>
-                            
-                                    <label htmlFor='passcode'>Passcode: </label>
-                                    <input type='number' name='passcode' onChange={this.handleInputChange} value={this.state.user.passcode}></input>
-                              
+
+                                <label htmlFor='name'>Name: </label>
+                                <input type='text' name='name' onChange={this.handleInputChange} value={this.state.user.name}></input>
+
+                                <label htmlFor='passcode'>Passcode: </label>
+                                <input type='number' name='passcode' onChange={this.handleInputChange} value={this.state.user.passcode}></input>
+
                                 <input type='submit' value='Submit'></input>
                             </form>
                             <form onSubmit={this.deleteUser}>
@@ -66,11 +66,24 @@ class UserList extends Component {
                         </div>
 
 
-                        : this.state.userList.map(user => {
-                            return (
-                                <p>{user.name}     {user.passcode}<button onClick={this.editUserForm} value={user.id}>Edit</button></p>
-                            )
-                        })
+
+                        : <table className='table-user'>
+                            <tr>
+                                <th>User</th>
+                                <th>Passcode</th>
+                                <th>Select</th>
+                            </tr>
+                            {this.state.userList.map(user => {
+                                return (
+                                    <tr>
+                                        <td>{user.name} </td>
+                                        <td>{user.passcode}</td>
+                                        <td><button onClick={this.editUserForm} value={user.id}>Edit</button></td>
+                                    </tr>
+
+                                )
+                            })}
+                        </table>
                 }
 
             </div>
