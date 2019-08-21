@@ -14,6 +14,7 @@ class POSContainer extends Component {
         cashPayment: '',
         redirect: false,
         userID: {},
+        userList:[],
         transactionObjet: {},
         productsAddedToTransaction: [],
         productList: [],
@@ -51,8 +52,13 @@ class POSContainer extends Component {
     }
 
     getUser = async () => {
-        const user = await axios.get(`/api/v1/users/1/`)
-        this.setState({ userID: { ...user.data } })
+        const user = await axios.get(`/api/v1/users/`)
+        this.setState({ userList: { ...user.data } })
+        this.setUserId()
+        
+    }
+    setUserId = () =>{
+        this.setState({userID: {...this.state.userList[0]}})
     }
 
     createTransaction = async () => {
