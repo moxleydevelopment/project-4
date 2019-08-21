@@ -167,6 +167,7 @@ class POSContainer extends Component {
     getPaymentScreen = () => {
 
         this.setState({ getPaymentScreen: true })
+        this.createTransaction()
 
 
 
