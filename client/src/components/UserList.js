@@ -61,7 +61,7 @@ class UserList extends Component {
                                 <input type='submit' value='Submit'></input>
                             </form>
                             <form onSubmit={this.deleteUser}>
-                                <input type='submit' value='Delete'></input>
+                                <input className="deleteBtn" type='submit' value='Delete'></input>
                             </form>
                         </div>
 

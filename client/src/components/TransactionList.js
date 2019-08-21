@@ -37,8 +37,8 @@ class TransactionList extends Component {
                 {
                     this.state.transactionList.map(transaction =>{
                         return (
-                            <div key={transaction.id}>
-                                <p>Transaction ID: {transaction.id}<button onClick={this.deleteTransaction} value={transaction.id}>Delete</button></p>
+                            <div className='tran-div' key={transaction.id}>
+                                <p>Transaction ID: {transaction.id}   <button className="deleteBtn" onClick={this.deleteTransaction} value={transaction.id}>Delete</button></p>
                             </div>
                             
                         )

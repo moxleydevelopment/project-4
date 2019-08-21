@@ -15,6 +15,23 @@
   background-clip: padding-box;  
 }
 
+.deleteBtn{
+  margin-top: 5px;
+  background-color: crimson;
+  padding: 10px 20px;
+  border-width: 0 4px 5px 0;
+  border-radius: 5px;
+  border-color: transparent rgb(238, 128, 128) #999 transparent;
+  background-clip: padding-box;  
+}
+.deleteBtn:hover{
+  border-width: 0 2px 3px 0; 
+  margin-right: 4px;
+  position: relative;
+  left: 2px;
+  top: 3px;
+}
+
 .btn:hover{
   border-width: 0 2px 3px 0; 
   margin-right: 4px;
@@ -357,7 +374,7 @@ table{
 
 /* Add User Form Styling */
 
- input[type=text], input[type=number], select {
+ input[type=text], input[type=number] {
   width: 100%; 
   padding: 8px;
   background-color: rgba(255, 255, 255, .5); 
@@ -367,11 +384,13 @@ table{
   margin-top: 6px; 
   margin-bottom: 16px; 
   resize: vertical ;
-  color: #aaa;
+  color: #000;
   font-weight: 700;
   font-size: 15px;
   
 }
+
+
 
 .form{
   border-radius: 5px;
@@ -382,14 +401,50 @@ table{
   display: grid;
   grid-template-columns: 200px 1fr;
   grid-gap: 16px;
-  color: #ccc;
+  color: #000;
   font-family: 'Roboto Mono', monospace;
 
   
 }
 
 
+.tran-div{
+  color: #000;
+  font-weight: 700;
+  font-size: 20px;
+}
 
 .new-user span{
   display: block;
+}
+
+.table-ing{
+  width: 100%;
+  text-align: center;
+  color: #000;
+
+}
+
+.table-ing td{
+  padding: 15px;
+}
+
+.table-ing tr:hover{
+  background-color: #999;
+  color: #fff;
+}
+
+.table-pr{
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.table-pr td{
+  padding: 15px;
+}
+
+.table-pr tr:hover{
+  background-color: #999;
+  color: #fff;
 }

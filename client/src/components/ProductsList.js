@@ -127,13 +127,13 @@ class ProductsList extends Component {
                         <div>
                             <form className='form' onSubmit={this.updateProduct}>
 
-                              
-                                    <label htmlFor='name'>Name: </label>
-                                    <input type='text' name='name' onChange={this.handleInputChange} value={this.state.product.name}></input>
-                               
-                                    <label htmlFor='price'>Price: </label>
-                                    <input type='number' name='price' onChange={this.handleInputChange} value={this.state.product.price}></input>
-                             
+
+                                <label htmlFor='name'>Name: </label>
+                                <input type='text' name='name' onChange={this.handleInputChange} value={this.state.product.name}></input>
+
+                                <label htmlFor='price'>Price: </label>
+                                <input type='number' name='price' onChange={this.handleInputChange} value={this.state.product.price}></input>
+
                                 <div>
                                     {
                                         this.state.ingridentsList.map(ingredient => {
@@ -164,19 +164,27 @@ class ProductsList extends Component {
                                 <input type='submit' value='Submit'></input>
                             </form>
                             <form onSubmit={this.deleteProduct}>
-                                <input type='submit' value='Delete'></input>
+                                <input className="deleteBtn" type='submit' value='Delete'></input>
                             </form>
                         </div>
 
-                        : this.state.productList.map(product => {
-                            return (
-                                <div key={product.id}>
-                                    <p>{product.name}          {product.price}
-                                        <button onClick={this.editProductForm} value={product.id} >Edit</button>
-                                    </p>
-                                </div>
-                            )
-                        })
+                        : <table className='table-pr'>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Select</th>
+                            </tr>
+                            {this.state.productList.map(product => {
+                                return (
+                                    <tr key={product.id}>
+                                        <td>{product.name} </td>
+                                        <td>{product.price}</td>
+                                        <td><button onClick={this.editProductForm} value={product.id} >Edit</button></td>
+
+                                    </tr>
+                                )
+                            })}
+                        </table>
                 }
 
 
