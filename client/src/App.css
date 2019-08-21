@@ -10,12 +10,80 @@
   margin: 10px;
 }
 
+.product-div {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  width: 125px;
+  height: 125px;
+}
 .product-btn {
-  padding: 10px 20px;
-  display: inline;
+  width: 115px;
+  height: 115px;
+  color: #fff;
+  margin: 5px 5px;
+  font-size: 20px;
+  
+  
 }
 
+.categoryBTN {
+  height: 110px;
+  width: 170px;
+  margin: 4px 40px;
+  font-size: 30px;
+  font-weight: 600;
+  color: #fff;
+}
 
+.appetizers{
+  background-color: orange;
+}
+
+.entrees{
+  background-color: deepskyblue;
+}
+
+.sides{
+  background-color: darkmagenta;
+}
+
+.desserts{
+  background-color: teal;
+}
+
+.beverage {
+  background-color: crimson;
+}
+
+.cocktails{
+  background-color: rgb(7, 43, 110);
+}
+
+.modbBTN {
+  height: 110px;
+  width: 170px;
+  margin: 4px 55px;
+  font-size: 30px;
+  font-weight: 600;
+  border-radius: 50%;
+}
+
+.Payment,  .Home {
+  background-color: green;
+  color : #fff;
+}
+
+.Repeat, .Delete, .Modify {
+  color: grey;
+  background-color: #fff;
+}
+
+.transactionBTN {
+  background-color: aquamarine;
+  border: none;
+  width: 400px;
+}
 
 
 
@@ -31,34 +99,36 @@
   display: grid;
   grid-template-columns: repeat(6 , 1fr);
   grid-template-rows: repeat(7 , 1fr);
-  background: blue;
+  
 }
 
 
 .transaction-display{
-  background-color: brown;
+  
   grid-column: 1 / span 2;
   grid-row: 1 / span 6;
 }
 
 .category-container{
-  background-color: crimson;
+  
   grid-column: 3/ span 1;
   grid-row: 1 / span 6;
 
 }
 
 .product-container{
-  background-color: darkgreen;
+  
   grid-column: 4/ span 3;
   grid-row: 1 / span 6;
 }
 
 
 .mod-button-container{
-  background-color: yellow;
+  
   grid-column: 1 / span 6;
   grid-row: 7 / span 1;
+  background-color: #aaa;
+  
 }
 
 

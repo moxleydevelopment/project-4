@@ -20,7 +20,7 @@ class POSContainer extends Component {
             'sides',
             'desserts',
             'beverage',
-            'cocktail',
+            'cocktails',
 
         ],
         filteredProductList: [],

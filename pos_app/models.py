@@ -22,7 +22,7 @@ class Transaction(models.Model):
 class Product(models.Model):
     CATEGORY = (
         ('beverage', 'Beverage'),
-        ('cocktail', 'Cocktails'),
+        ('cocktails', 'Cocktails'),
         ('appetizers', 'Appetizers'),
         ('entrees', 'Entrees'),
         ('desserts', 'Desserts'),

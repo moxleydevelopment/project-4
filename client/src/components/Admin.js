@@ -5,6 +5,7 @@ import NewProductForm from "./NewProductForm";
 import ProductsList from './ProductsList';
 import NewIngredientForm from './NewIngredientForm'
 import IngredientList from './IngredientList';
+import TransactionList from './TransactionList'
 
 class Admin extends Component {
 
@@ -15,6 +16,7 @@ class Admin extends Component {
         displayProductList: false,
         displayNewIngredientForm: false,
         displayIngredientList: false,
+        displayTransactionList: false
 
     }
 
@@ -28,7 +30,8 @@ class Admin extends Component {
                 displayNewProductForm: false,
                 displayProductList: false,
                 displayNewIngredientForm: false,
-                displayIngredientList: false
+                displayIngredientList: false,
+                displayTransactionList: false
             })
         }
     }
@@ -43,7 +46,8 @@ class Admin extends Component {
                 displayNewProductForm: false,
                 displayProductList: false,
                 displayNewIngredientForm: false,
-                displayIngredientList: false
+                displayIngredientList: false,
+                displayTransactionList: false
 
             })
         }
@@ -59,7 +63,8 @@ class Admin extends Component {
                 displayNewUserForm: false,
                 displayProductList: false,
                 displayNewIngredientForm: false,
-                displayIngredientList: false
+                displayIngredientList: false,
+                displayTransactionList: false
 
             })
         }
@@ -75,7 +80,8 @@ class Admin extends Component {
                 displayUsersList: false,
                 displayNewProductForm: false,
                 displayNewIngredientForm: false,
-                displayIngredientList: false
+                displayIngredientList: false,
+                displayTransactionList: false
 
             })
         }
@@ -91,7 +97,8 @@ class Admin extends Component {
                 displayNewProductForm: false,
                 displayProductList: false,
                 displayNewIngredientForm: true,
-                displayIngredientList: false
+                displayIngredientList: false,
+                displayTransactionList: false
             })
         }
     }
@@ -106,7 +113,24 @@ class Admin extends Component {
                 displayNewProductForm: false,
                 displayProductList: false,
                 displayNewIngredientForm: false,
-                displayIngredientList: true
+                displayIngredientList: true,
+                displayTransactionList: false
+            })
+        }
+    }
+
+    displayTransactions = () =>{
+        if (this.displayTransactionList) {
+            this.setState({ displayTransactionList: false })
+        } else {
+            this.setState({
+                displayNewUserForm: false,
+                displayUsersList: false,
+                displayNewProductForm: false,
+                displayProductList: false,
+                displayNewIngredientForm: false,
+                displayIngredientList: false,
+                displayTransactionList: true
             })
         }
     }
@@ -125,6 +149,7 @@ class Admin extends Component {
                     <button className='btn' onClick={this.displayProduct}>Dislplay Products</button>
                     <button className='btn' onClick={this.addNewIngredient}>Add New Ingredient</button>
                     <button className='btn' onClick={this.displayIngredient}>Display Ingredients</button>
+                    <button className='btn' onClick={this.displayTransactions}>Display Transactions</button>
 
 
                 </div>
@@ -141,8 +166,10 @@ class Admin extends Component {
                                         <NewIngredientForm /> :
                                         this.state.displayIngredientList ?
                                             <IngredientList /> :
+                                            this.state.displayTransactionList ?
+                                                <TransactionList /> :
 
-                                            <h1>Content Here</h1>}
+                                                <h1>Content Here</h1>}
 
                 </div>
             </div>

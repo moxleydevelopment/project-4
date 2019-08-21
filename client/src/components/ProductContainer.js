@@ -15,6 +15,7 @@ class ProductContainer extends Component {
                                 key={product.id}
                                 name={product.name}
                                 id={product.id}
+                                category={product.category}
                                 addProductToTransaction={this.props.addProductToTransaction}
                             />
                         )

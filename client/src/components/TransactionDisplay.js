@@ -11,7 +11,7 @@ class TransactionDisplay extends Component {
         let itemList = this.props.productsAddedToTransaction.map((product, index) =>{
                          
             return (
-                <button onClick={this.props.selectItem} value={index}>
+                <button className={`transactionBTN`} onClick={this.props.selectItem} value={index}>
                    
                      {product.name}
                         {product.price}

@@ -8,7 +8,7 @@ class  CategoryContainer extends Component {
                 {
                     this.props.categoryTypeArray.map((category, index )=>{
                         return (
-                            <button key={index} onClick={this.props.switchCategoty} value={category}>{category}</button>
+                            <button className={`categoryBTN ${category}`} key={index} onClick={this.props.switchCategoty} value={category}>{category}</button>
                         )
                     })
                 }
