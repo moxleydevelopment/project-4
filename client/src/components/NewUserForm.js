@@ -9,7 +9,7 @@ class NewUserForm extends Component {
 
     addNewUser = async (event) => {
         event.preventDefault()
-        const res = await axios.post(`api/v1/users/`, this.state.newUser)
+        const res = await axios.post(`/api/v1/users/`, this.state.newUser)
         console.log(res.data)
 
     }

@@ -47,7 +47,7 @@ class ProductsList extends Component {
     handleInputChange = (event) => {
         const copiedProduct = { ...this.state.product }
         copiedProduct[event.target.name] = event.target.value
-        this.setState({ Product: copiedProduct })
+        this.setState({ product: copiedProduct })
 
     }
 
@@ -139,7 +139,7 @@ class ProductsList extends Component {
                                         this.state.ingridentsList.map(ingredient => {
 
                                             return (
-                                                <div>
+                                                <div key={ingredient.id}>
                                                     <input type='checkbox' name='ingredients_list' value={ingredient.name} onChange={this.ingridentsListChange} checked={this.checkForIngredient(ingredient)}></input>
                                                     <label htmlFor='ingredient'>{ingredient.name}</label>
 
