@@ -51,7 +51,7 @@ class POSContainer extends Component {
     }
 
     getUser = async () => {
-        const user = await axios.get(`/api/v1/users/2/`)
+        const user = await axios.get(`/api/v1/users/1/`)
         this.setState({ userID: { ...user.data } })
     }
 

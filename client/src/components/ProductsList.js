@@ -95,10 +95,10 @@ class ProductsList extends Component {
         } else {
 
             itemArray.forEach(element => {
-                if (element === event.target.value) {
+                if (element.name == event.target.value) {
                     isFound = true
                     itemArray = itemArray.filter((item) => {
-                        return (item !== event.target.value)
+                        return (item.name !== event.target.value)
                     })
 
                 }
