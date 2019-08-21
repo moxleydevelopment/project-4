@@ -55,7 +55,7 @@ class IngredientList extends Component {
     render() {
         return (
             <div>
-                <h1>List of ingredients</h1>
+                <h1>List of Ingredients</h1>
                 {this.state.displayEditForm ?
                     <div>
                         <form className='form' onSubmit={this.updateIngredient}>

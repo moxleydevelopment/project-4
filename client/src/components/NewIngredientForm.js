@@ -22,7 +22,7 @@ class NewIngredientForm extends Component {
     render() {
         return (
             <div>
-                <h1>Add Your New ingredient</h1>
+                <h1>Add Your New Ingredient</h1>
                 <form className='form' onSubmit={this.addNewIngredient}>
                    
                         <label htmlFor='name'>Name: </label>
