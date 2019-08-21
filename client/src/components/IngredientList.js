@@ -10,7 +10,7 @@ class IngredientList extends Component {
     }
 
     getIngredientsList = async () => {
-        const res = await axios.get(`api/v1/ingredients/`)
+        const res = await axios.get(`/api/v1/ingredients/`)
         
         this.setState({ ingredientList: [...res.data] })
     }
@@ -21,7 +21,7 @@ class IngredientList extends Component {
 
     editIngridient = async (event) => {
 
-        const ingredient = await axios.get(`api/v1/ingredients/${event.target.value}/`)
+        const ingredient = await axios.get(`/api/v1/ingredients/${event.target.value}/`)
         
         this.setState({ ingredient: ingredient.data, displayEditForm: true })
 
@@ -29,7 +29,7 @@ class IngredientList extends Component {
 
     updateIngredient = async (event)=>{
         event.preventDefault()
-        const res = await axios.put(`api/v1/ingredients/${this.state.ingredient.id}/`, this.state.ingredient)
+        const res = await axios.put(`/api/v1/ingredients/${this.state.ingredient.id}/`, this.state.ingredient)
         
         this.setState({displayEditForm: false})
         
@@ -37,7 +37,7 @@ class IngredientList extends Component {
 
     deleteIngredient = async (event) =>{
         event.preventDefault()
-        const res = await axios.delete(`api/v1/ingredients/${this.state.ingredient.id}/`)
+        const res = await axios.delete(`/api/v1/ingredients/${this.state.ingredient.id}/`)
         this.setState({displayEditForm: false})
         this.getIngredientsList()
     }
@@ -58,11 +58,11 @@ class IngredientList extends Component {
                 <h1>List of ingredients</h1>
                 {this.state.displayEditForm ?
                     <div>
-                        <form onSubmit={this.updateIngredient}>
-                            <span>
+                        <form className='form' onSubmit={this.updateIngredient}>
+                           
                                 <label htmlFor='name'>Name: </label>
                                 <input type='text' name='name' onChange={this.handleInputChange} value={this.state.ingredient.name}></input>
-                            </span>
+                          
                             <input type='submit' value='Submit'></input>
                         </form>
                         <form onSubmit={this.deleteIngredient}>

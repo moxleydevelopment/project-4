@@ -6,12 +6,15 @@ import ModButtonContainer from './ModButtonContainer'
 import PaymentContainer from './PaymentContainer'
 import ModificationContainer from './ModificationContainer'
 import axios from 'axios'
+import { Redirect } from 'react-router-dom'
 
 
 class POSContainer extends Component {
     state = {
-        userID : {},
-        transactionObjet :{},
+        cashPayment: '',
+        redirect: false,
+        userID: {},
+        transactionObjet: {},
         productsAddedToTransaction: [],
         productList: [],
         categoryTypeArray: [
@@ -28,7 +31,7 @@ class POSContainer extends Component {
             'Home',
             'Repeat',
             'Delete',
-            'Modify',
+            'Send',
             'Payment'
         ],
         displayModificationScreen: false,
@@ -47,9 +50,9 @@ class POSContainer extends Component {
 
     }
 
-    getUser = async () =>{
+    getUser = async () => {
         const user = await axios.get(`/api/v1/users/2/`)
-        this.setState({userID : {...user.data}})
+        this.setState({ userID: { ...user.data } })
     }
 
     createTransaction = async () => {
@@ -98,8 +101,8 @@ class POSContainer extends Component {
             case 'Delete':
                 this.deleteSelectedItem()
                 break;
-            case 'Modify':
-                this.getModifyScreen()
+            case 'Send':
+                this.sendItems()
                 break;
             case 'Payment':
                 this.getPaymentScreen()
@@ -113,6 +116,8 @@ class POSContainer extends Component {
     }
 
     goToHomeScreen = () => {
+        this.setState({ redirect: true })
+
 
     }
 
@@ -125,6 +130,14 @@ class POSContainer extends Component {
 
     }
 
+    sendItems = () => {
+        let tempTransaction = { ...this.state.transactionObjet }
+        tempTransaction['total'] = this.totalWithTax()
+        tempTransaction['product_list'] = [...this.state.productsAddedToTransaction]
+        tempTransaction['user_name'] = [this.state.userID.id]
+        this.setState({ transactionObjet: { ...tempTransaction } })
+    }
+
     deleteSelectedItem = () => {
         let copiedList = [...this.state.productsAddedToTransaction]
         if (this.state.selectedItemIndex !== -1) {
@@ -134,46 +147,59 @@ class POSContainer extends Component {
     }
 
     getModifyScreen = () => {
-        this.setState({displayModificationScreen : true})
+        this.setState({ displayModificationScreen: true })
     }
 
-    totalWithTax = () =>{
+    totalWithTax = () => {
         let getSum = (total, num) => {
             return total + Number(num.price);
-          }
-          let subTotal = this.state.productsAddedToTransaction.reduce(getSum, 0)
-           return((subTotal + (subTotal * .07)))
+        }
+        let subTotal = this.state.productsAddedToTransaction.reduce(getSum, 0)
+        return ((subTotal + (subTotal * .07)))
     }
 
     getPaymentScreen = () => {
-        let tempTransaction = {...this.state.transactionObjet}
-        tempTransaction['total'] = this.totalWithTax()
-        tempTransaction['product_list'] = [...this.state.productsAddedToTransaction]
-        tempTransaction['user_name'] = [this.state.userID.id]
-        this.setState({getPaymentScreen : true , transactionObjet:{...tempTransaction}})
-        this.createTransaction()
-        
+
+        this.setState({ getPaymentScreen: true })
 
 
+
+    }
+
+    getcashPayment = (event) => {
+        let tempPayment = this.state.cashPayment
+        tempPayment = tempPayment + event.target.value
+
+        this.setState({ cashPayment: tempPayment })
+        console.log(this.state.cashPayment)
     }
 
     selectItem = (event) => {
         let item = {}
+        console.log(event.target.value)
         item = { ...this.state.productsAddedToTransaction[event.target.value] }
         this.setState({ selectedItem: item, selectedItemIndex: event.target.value })
 
     }
 
-    
+    clearAmount = () => {
+        this.setState({ cashPayment: "" })
+    }
 
-   
 
-   
 
-    
+
+
+
+
+
     render() {
+        if (this.state.redirect) {
+            return <Redirect to='/admin/' />
+        }
         return (
             <div className='pos-container'>
+
                 <TransactionDisplay
                     productsAddedToTransaction={this.state.productsAddedToTransaction}
                     selectItem={this.selectItem}
@@ -185,16 +211,22 @@ class POSContainer extends Component {
                     switchCategoty={this.switchCategoty}
                 ></CategoryContainer>
                 {
-                    this.state.getPaymentScreen?
-                    <PaymentContainer/>:
-                    this.state.displayModificationScreen?
-                    <ModificationContainer/>:
-                    <ProductContainer
-                    productList={this.state.filteredProductList}
-                    addProductToTransaction={this.addProductToTransaction}
-                ></ProductContainer>
+                    this.state.getPaymentScreen ?
+                        <PaymentContainer
+                            cashPayment={this.state.cashPayment}
+                            transactionObjet={this.state.transactionObjet}
+                            getcashPayment={this.getcashPayment}
+                            clearAmount={this.clearAmount}
+                        /> :
+                        this.state.displayModificationScreen ?
+                            <ModificationContainer /> :
+                            <ProductContainer
+
+                                productList={this.state.filteredProductList}
+                                addProductToTransaction={this.addProductToTransaction}
+                            ></ProductContainer>
                 }
-                
+
                 <ModButtonContainer
                     modificationType={this.state.modificationType}
                     switchModification={this.switchModification}

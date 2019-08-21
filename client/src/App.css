@@ -1,31 +1,57 @@
-/*.App {
-  
+.App {
+  background-image: url('https://i.imgur.com/FmHaByt.jpg');
+  background-size: cover;
 }
-*/
+
 
 /* Button Class Styling */
 
 .btn {
   padding: 10px 20px;
   margin: 10px;
+  border-width: 0 4px 5px 0;
+  border-radius: 5px;
+  border-color: transparent #ddd #999 transparent;
+  background-clip: padding-box;  
+}
+
+.btn:hover{
+  border-width: 0 2px 3px 0; 
+  margin-right: 4px;
+  position: relative;
+  left: 2px;
+  top: 3px;
 }
 
 .product-div {
   display: inline-block;
   padding: 0;
   margin: 0;
-  width: 125px;
-  height: 125px;
+  width: 135px;
+  height: 135px;
 }
 .product-btn {
-  width: 115px;
-  height: 115px;
+  width: 125px;
+  height: 125px;
   color: #fff;
-  margin: 5px 5px;
+  margin: 10px 10px;
   font-size: 20px;
+  border-width: 0 4px 5px 0;
+  border-radius: 5px;
+  border-color: transparent #ddd #999 transparent;
+  background-clip: padding-box;  
   
   
 }
+
+.product-btn:hover{
+  border-width: 0 2px 3px 0; 
+  margin-right: 4px;
+  position: relative;
+  left: 2px;
+  top: 3px;
+}
+
 
 .categoryBTN {
   height: 110px;
@@ -34,6 +60,19 @@
   font-size: 30px;
   font-weight: 600;
   color: #fff;
+  border-width: 0 4px 5px 0;
+  border-radius: 5px;
+  border-color: transparent #ddd #999 transparent;
+  background-clip: padding-box;  
+  
+}
+
+.categoryBTN:hover{
+  border-width: 0 2px 3px 0; 
+  margin-right: 4px;
+  position: relative;
+  left: 2px;
+  top: 3px;
 }
 
 .appetizers{
@@ -67,23 +106,52 @@
   font-size: 30px;
   font-weight: 600;
   border-radius: 50%;
+  border-width: 0 4px 5px 0;
+  border-color: transparent #ddd #999 transparent;
+  
 }
 
-.Payment,  .Home {
+
+.Payment,  .Send {
   background-color: green;
   color : #fff;
 }
 
-.Repeat, .Delete, .Modify {
+.Home {
+  background-color: darkred;
+  color: #fff;
+}
+
+.Repeat, .Delete {
   color: grey;
   background-color: #fff;
 }
 
 .transactionBTN {
-  background-color: aquamarine;
+  font-size: 20px;
   border: none;
-  width: 400px;
+  padding: 20px 5px;
+  text-align: center;
+  
+
 }
+
+ th{
+  font-size: 30px;
+}
+
+table{
+  color: white;
+}
+
+
+
+.transaction-display table {
+  width: 100%;
+}
+
+
+
 
 
 
@@ -104,7 +172,7 @@
 
 
 .transaction-display{
-  
+ 
   grid-column: 1 / span 2;
   grid-row: 1 / span 6;
 }
@@ -131,38 +199,196 @@
   
 }
 
+.payment-div{
+  
+  display: grid;
+  grid-template-columns: repeat(4 , 1fr);
+  grid-template-rows: repeat(5 , 1fr);
+  grid-column: 4/ span 3;
+  grid-row: 1 / span 6;
 
+}
+
+.payment-div h3{
+  color: #fff;
+
+}
+
+.payment-div h2{
+  color: green;
+  grid-row: 3 / span 1;
+  grid-column: 1 / span 4 ;
+  justify-self: center;
+  font-weight: 900;
+}
+
+
+.keypad{
+  display: grid;
+  grid-template-columns: repeat(3 , 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  text-align: center;
+}
+
+.keypad button {
+  padding: 20px;
+  border-width: 0 4px 5px 0;
+  border-radius: 5px;
+  border-color: transparent #ddd #999 transparent;
+  background-clip: padding-box;  
+}
+
+.keypad button:hover{
+  border-width: 0 2px 3px 0; 
+  margin-right: 4px;
+  position: relative;
+  left: 2px;
+  top: 3px;
+}
+
+.keypad-container{ 
+  
+ grid-column: 2/ span 2;
+ grid-row: 1/ span 2;
+}
+.amex, .discover , .mastercard, .visa{
+  justify-self: center;
+  align-self: center;
+  width: 125px;
+  height: 125px;
+  font-size: 50px;
+  
+}
+
+ .visa:hover{
+  border-width: 0 2px 3px 0; 
+  margin-right: 4px;
+  position: relative;
+  left: 2px;
+  top: 3px;
+}
+
+.amex:hover{
+  border-width: 0 2px 3px 0; 
+  margin-right: 4px;
+  position: relative;
+  left: 2px;
+  top: 3px;
+}
+
+.amex{
+  display: inline;
+  grid-row: 4/ span 1;
+  grid-column: 1/ span 2;
+  
+}
+
+.discover{
+  grid-row: 4/ span 1;
+  grid-column: 3/ span 2;
+}
+
+.discover:hover{
+  border-width: 0 2px 3px 0; 
+  margin-right: 4px;
+  position: relative;
+  left: 2px;
+  top: 3px;
+}
+
+.mastercard {
+  grid-row: 5/ span 1;
+  grid-column: 1/ span 2;
+}
+
+.mastercard:hover{
+  border-width: 0 2px 3px 0; 
+  margin-right: 4px;
+  position: relative;
+  left: 2px;
+  top: 3px;
+}
+
+.visa {
+  grid-row: 5/ span 1;
+  grid-column: 3/ span 2;
+}
 
 /* Styling for the Admin Page */
 
 .admin-header {
   grid-column: 1 / span 6;
   grid-row: 1 / span 1;
+  color: #aaa;
+  
 
 }
 
 .admin-options {
   grid-column: 1/ span 3;
   grid-row: 2 / span 6;
-  background-color: azure;
+  display: grid;
+  grid-template-columns: 1fr, 1fr;
+  grid-template-rows: repeat(5, 1fr);
+ 
 }
 
 .admin-options h3 {
-  text-align: center;
+  text-align: center; 
+  color: #aaa;
+  grid-column: 1 /span 2;
+  grid-row: 1 / span 1;
+  
 }
 
 .admin-view{
   grid-column: 4/ span 3;
   grid-row: 2/ span 6;
-  background-color: brown;
+  color: #aaa;
+  font-weight: 800;
+  
+}
+
+.add-user{
+  grid-column: 1 /span 1;
+  grid-row: 2/ span 1;
 }
 
 
 /* Add User Form Styling */
 
-.new-user{
-
+ input[type=text], input[type=number], select {
+  width: 100%; 
+  padding: 8px;
+  background-color: rgba(255, 255, 255, .5); 
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  box-sizing: border-box; 
+  margin-top: 6px; 
+  margin-bottom: 16px; 
+  resize: vertical ;
+  color: #aaa;
+  font-weight: 700;
+  font-size: 15px;
+  
 }
+
+.form{
+  border-radius: 5px;
+  background-color: rgba(56, 56, 56, 0.5);
+  padding: 20px;
+  max-width: 650px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-gap: 16px;
+  color: #ccc;
+  font-family: 'Roboto Mono', monospace;
+
+  
+}
+
+
 
 .new-user span{
   display: block;

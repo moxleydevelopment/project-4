@@ -6,6 +6,7 @@ import ProductsList from './ProductsList';
 import NewIngredientForm from './NewIngredientForm'
 import IngredientList from './IngredientList';
 import TransactionList from './TransactionList'
+import { Redirect } from 'react-router-dom'
 
 class Admin extends Component {
 
@@ -16,7 +17,9 @@ class Admin extends Component {
         displayProductList: false,
         displayNewIngredientForm: false,
         displayIngredientList: false,
-        displayTransactionList: false
+        displayTransactionList: false,
+        redirectToPos: false
+
 
     }
 
@@ -119,7 +122,7 @@ class Admin extends Component {
         }
     }
 
-    displayTransactions = () =>{
+    displayTransactions = () => {
         if (this.displayTransactionList) {
             this.setState({ displayTransactionList: false })
         } else {
@@ -134,8 +137,14 @@ class Admin extends Component {
             })
         }
     }
+    redirectToPOS = () => {
+        this.setState({ redirectToPos: true })
+    }
 
     render() {
+        if (this.state.redirectToPos) {
+            return <Redirect to='/' />
+        }
         return (
             <div className='pos-container'>
                 <div className='admin-header'>
@@ -143,13 +152,14 @@ class Admin extends Component {
                 </div>
                 <div className='admin-options'>
                     <h3>Select an option from below</h3>
-                    <button className='btn' onClick={this.addNewUser}>Add New User</button>
-                    <button className='btn' onClick={this.displayUsers}>Display Users</button>
-                    <button className='btn' onClick={this.addNewProduct}>Add New Product</button>
-                    <button className='btn' onClick={this.displayProduct}>Dislplay Products</button>
-                    <button className='btn' onClick={this.addNewIngredient}>Add New Ingredient</button>
-                    <button className='btn' onClick={this.displayIngredient}>Display Ingredients</button>
-                    <button className='btn' onClick={this.displayTransactions}>Display Transactions</button>
+                    <button className='btn add-user' onClick={this.addNewUser}>Add New User</button>
+                    <button className='btn display-user' onClick={this.displayUsers}>Display Users</button>
+                    <button className='btn add-product' onClick={this.addNewProduct}>Add New Product</button>
+                    <button className='btn display-product' onClick={this.displayProduct}>Dislplay Products</button>
+                    <button className='btn add-ingredient' onClick={this.addNewIngredient}>Add New Ingredient</button>
+                    <button className='btn display-ingredient' onClick={this.displayIngredient}>Display Ingredients</button>
+                    <button className='btn display-transaction' onClick={this.displayTransactions}>Display Transactions</button>
+                    <button className='btn redirect-home' onClick={this.redirectToPOS}>POS</button>
 
 
                 </div>
@@ -169,7 +179,7 @@ class Admin extends Component {
                                             this.state.displayTransactionList ?
                                                 <TransactionList /> :
 
-                                                <h1>Content Here</h1>}
+                                                <h1></h1>}
 
                 </div>
             </div>

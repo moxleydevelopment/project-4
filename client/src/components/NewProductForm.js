@@ -16,7 +16,7 @@ class NewProductForm extends Component {
     }
 
     getIngredientsList = async () => {
-        const res = await axios.get(`api/v1/ingredients/`)
+        const res = await axios.get(`/api/v1/ingredients/`)
         this.setState({ ingridentsList: [...res.data] })
         console.log(res.data)
 
@@ -33,7 +33,7 @@ class NewProductForm extends Component {
 
     addNewProduct = async (event) => {
         event.preventDefault()
-        const res = await axios.post(`api/v1/products/`, this.state.newProduct)
+        const res = await axios.post(`/api/v1/products/`, this.state.newProduct)
         console.log(res.data)
     }
 
@@ -83,15 +83,15 @@ class NewProductForm extends Component {
         return (
             <div>
                 <h3>Whats the new product?</h3>
-                <form onSubmit={this.addNewProduct}>
-                    <span>
+                <form className='form' onSubmit={this.addNewProduct}>
+                    
                         <label htmlFor='name'>Name: </label>
                         <input type='text' name='name' onChange={this.handleInputChange} value={this.state.newProduct.name}></input>
-                    </span>
-                    <span>
+                   
+                   
                         <label htmlFor='price'>Price: </label>
                         <input type='number' name='price' onChange={this.handleInputChange} value={this.state.newProduct.price}></input>
-                    </span>
+                   
                     <div>
                         {
                             this.state.ingridentsList.map(ingredient => {

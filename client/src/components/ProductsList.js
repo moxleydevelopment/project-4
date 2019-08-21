@@ -29,18 +29,18 @@ class ProductsList extends Component {
     }
 
     getIngredientsList = async () => {
-        const res = await axios.get(`api/v1/ingredients/`)
+        const res = await axios.get(`/api/v1/ingredients/`)
         this.setState({ ingridentsList: [...res.data] })
     }
 
     updateProduct = async (event) => {
         event.preventDefault()
-        const res = await axios.put(`api/v1/products/${this.state.product.id}/`, this.state.product)
+        const res = await axios.put(`/api/v1/products/${this.state.product.id}/`, this.state.product)
         console.log(res.data)
     }
 
-    deleteProduct = async ()=>{
-        const res = await axios.delete(`api/v1/products/${this.state.product.id}/`)
+    deleteProduct = async () => {
+        const res = await axios.delete(`/api/v1/products/${this.state.product.id}/`)
         console.log(res.data)
     }
 
@@ -125,16 +125,15 @@ class ProductsList extends Component {
                 {
                     this.state.editProductFormDisplayed ?
                         <div>
-                            <form onSubmit={this.updateProduct}>
+                            <form className='form' onSubmit={this.updateProduct}>
 
-                                <span>
+                              
                                     <label htmlFor='name'>Name: </label>
                                     <input type='text' name='name' onChange={this.handleInputChange} value={this.state.product.name}></input>
-                                </span>
-                                <span>
+                               
                                     <label htmlFor='price'>Price: </label>
                                     <input type='number' name='price' onChange={this.handleInputChange} value={this.state.product.price}></input>
-                                </span>
+                             
                                 <div>
                                     {
                                         this.state.ingridentsList.map(ingredient => {
